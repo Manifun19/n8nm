@@ -1,0 +1,57 @@
+name: Smart Screenshot Android APK
+
+# Builds the standalone Smart Screenshot Android app (android/SmartScreenshot/)
+# into an installable debug APK and uploads it as a workflow artifact, so it
+# can be downloaded and sideloaded on a phone without needing a PC/Android
+# Studio to build it. Scoped entirely to that directory — never touches the
+# rest of the n8n build/release pipeline.
+
+on:
+  push:
+    paths:
+      - 'android/SmartScreenshot/**'
+      - '.github/workflows/smart-screenshot-android.yml'
+  pull_request:
+    paths:
+      - 'android/SmartScreenshot/**'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Build debug APK
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: android/SmartScreenshot
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install required SDK packages
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build debug APK
+        run: gradle assembleDebug --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: smart-screenshot-debug-apk
+          path: android/SmartScreenshot/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 30

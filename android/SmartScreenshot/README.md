@@ -147,6 +147,27 @@ To actually build:
 2. Let it sync (downloads AGP 8.5.2, Kotlin 1.9.24, compileSdk 34).
 3. Run on a device/emulator running Android 7.0 (API 24) or newer.
 
+## Getting an APK without a PC (GitHub Actions)
+
+`.github/workflows/smart-screenshot-android.yml` builds a debug APK on every
+push that touches `android/SmartScreenshot/` (and can also be triggered
+manually). It never touches any other n8n workflow or build path. To get an
+installable APK straight from a phone:
+
+1. Push a change under `android/SmartScreenshot/`, or open the repo's
+   **Actions** tab → **Smart Screenshot Android APK** → **Run workflow**.
+2. Once the run finishes (green check), open that run and scroll to
+   **Artifacts** → download `smart-screenshot-debug-apk` (this works fine
+   from a phone browser, while logged into GitHub).
+3. The download is a `.zip` — extract it (most phones' Files app or Chrome
+   downloads can do this) to get `app-debug.apk`.
+4. Open the extracted `.apk`, allow "Install from unknown sources" for your
+   browser/file manager when prompted, and install.
+
+This is a **debug**-signed build (no release signing key is stored in the
+repo), which is fine for installing and testing — Android has no issue
+sideloading a debug APK.
+
 ## Testing steps
 
 1. **Launch** the app → tap "Enable floating bubble".
