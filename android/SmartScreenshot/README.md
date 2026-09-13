@@ -24,7 +24,7 @@ android/SmartScreenshot/
       ScreenCaptureManager.kt               # MediaProjection -> single Bitmap frame
     editor/
       CropEditorActivity.kt        # editor screen: toolbar wiring, save/share/discard
-      CropOverlayView.kt           # free-form draggable crop rectangle
+      CropOverlayView.kt           # free-form draggable crop rectangle (L-bracket handles, edge ticks)
       EditorState.kt               # undo/redo/rotate/crop/reset bitmap history
       AspectRatioOption.kt         # Free / 1:1 / 4:3 / 16:9 / 9:16 / A4
     storage/
@@ -163,10 +163,16 @@ To actually build:
      open with a full-resolution screenshot of whatever was behind the
      bubble. The bubble itself should not be visible in the captured image.
 7. In the editor:
-   - Drag the corner/edge handles — the crop box should resize smoothly.
-   - Drag inside the crop box — it should move.
+   - Drag a corner (L-bracket handle) — the crop box should resize smoothly,
+     and that bracket should highlight (accent color, slightly larger)
+     while held. A rule-of-thirds grid should appear only while dragging,
+     and disappear once you release.
+   - Drag an edge tick (the short bar at the middle of each side) — that
+     side alone should move.
+   - Drag inside the crop box — it should move as a whole.
    - Try an aspect-ratio chip (e.g. 1:1) — the box should snap to that
-     ratio and only corner-resize from then on.
+     ratio, the edge ticks should disappear (locked ratio only resizes from
+     corners), and it should only corner-resize from then on.
    - Tap **Rotate left/right** — image rotates 90°.
    - Tap **Crop** — image is cropped to the selected box.
    - Tap **Undo** — reverts the last crop/rotate. **Redo** re-applies it.
