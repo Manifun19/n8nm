@@ -61,4 +61,16 @@
     <!-- Errors -->
     <string name="crop_failed">Crop failed. Your original screenshot is safe.</string>
     <string name="generic_error">Something went wrong. Please try again.</string>
+
+    <!-- History -->
+    <string name="btn_view_history">Screenshot history</string>
+    <string name="history_title">Screenshot history</string>
+    <string name="history_empty">No screenshots yet. Capture one with the floating bubble.</string>
+    <string name="history_delete_dialog_title">Delete screenshot?</string>
+    <string name="history_delete_dialog_message">This will remove it from your gallery too.</string>
+    <string name="history_delete_action">Delete</string>
+    <string name="history_deleted">Screenshot deleted</string>
+    <string name="history_delete_failed">Unable to delete screenshot.</string>
+    <string name="history_open_failed">Unable to open this screenshot.</string>
+    <string name="history_load_failed">Unable to load screenshot history.</string>
 </resources>

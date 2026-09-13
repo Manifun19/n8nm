@@ -54,6 +54,11 @@
             android:theme="@style/Theme.SmartScreenshot.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity
+            android:name=".history.HistoryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SmartScreenshot" />
+
         <service
             android:name=".bubble.FloatingBubbleService"
             android:exported="false"

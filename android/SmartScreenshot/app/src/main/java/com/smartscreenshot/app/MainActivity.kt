@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.smartscreenshot.app.bubble.FloatingBubbleService
+import com.smartscreenshot.app.history.HistoryActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,6 +46,10 @@ class MainActivity : AppCompatActivity() {
             } else {
                 requestPermissionsThenStart()
             }
+        }
+
+        findViewById<MaterialButton>(R.id.viewHistoryButton).setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
         }
     }
 

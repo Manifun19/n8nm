@@ -52,4 +52,15 @@
 
     <string name="crop_failed">Crop नहीं हो सका। आपका मूल screenshot सुरक्षित है।</string>
     <string name="generic_error">कुछ गलत हो गया। कृपया फिर से प्रयास करें।</string>
+
+    <string name="btn_view_history">Screenshot history</string>
+    <string name="history_title">Screenshot history</string>
+    <string name="history_empty">अभी तक कोई screenshot नहीं है। Floating bubble से एक capture करें।</string>
+    <string name="history_delete_dialog_title">Screenshot delete करें?</string>
+    <string name="history_delete_dialog_message">यह आपकी gallery से भी हट जाएगा।</string>
+    <string name="history_delete_action">Delete</string>
+    <string name="history_deleted">Screenshot delete हो गया</string>
+    <string name="history_delete_failed">Screenshot delete नहीं हो सका।</string>
+    <string name="history_open_failed">यह screenshot नहीं खुल सका।</string>
+    <string name="history_load_failed">Screenshot history load नहीं हो सकी।</string>
 </resources>

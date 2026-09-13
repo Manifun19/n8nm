@@ -31,6 +31,11 @@ android/SmartScreenshot/
       ScreenshotSaver.kt           # MediaStore (Q+) / legacy file save, PNG or JPG
       ShareHelper.kt                # native Android share sheet
       TempFileManager.kt           # app-cache temp file lifecycle
+    history/
+      HistoryActivity.kt           # grid of past saves, tap-to-view, long-press-to-delete
+      HistoryAdapter.kt            # RecyclerView grid + background thumbnail loading
+      ScreenshotHistoryRepository.kt  # reads the "Smart Screenshot" MediaStore album
+      HistoryItem.kt                # uri / name / date / mime model
     util/
       BitmapUtils.kt               # rotate/crop/downsample/recycle helpers
       FileNameGenerator.kt         # "Screenshot_YYYYMMDD_HHMMSS"
@@ -64,6 +69,24 @@ Flow:
 This is why the bubble never appears in the screenshot, and why capture is
 "one tap" for every shot after the very first.
 
+## Screenshot history
+
+`MainActivity` has a "Screenshot history" button opening `HistoryActivity`:
+a grid of every screenshot this app has saved, tap to open it in the
+system image viewer, long-press to delete (with confirmation). Deliberately
+has **no separate database** — `ScreenshotSaver` already writes every save
+into a dedicated "Smart Screenshot" MediaStore album, so
+`ScreenshotHistoryRepository` just queries that album. This matches the
+original MVP guidance (don't stand up a complex database if the gallery
+already holds the data) while staying future-ready: if history ever needs
+data MediaStore doesn't hold (tags, notes, folders), only the repository
+and `HistoryItem` model would need to grow, not the rest of the app.
+
+Thumbnails load off the main thread (`ContentResolver.loadThumbnail` on
+Android 10+, a sampled `BitmapFactory` decode below that) and are matched
+back to their `ViewHolder` by URI so fast scrolling never shows a stale
+image.
+
 ## Files changed
 
 None. This is a new, additive feature in a new directory; no existing file
@@ -72,7 +95,7 @@ in the repository was modified.
 ## Files created
 
 All under `android/SmartScreenshot/` — see the layout above for the full
-list (24 Kotlin files+resources, plus the Gradle project files:
+list (Kotlin sources + resources, plus the Gradle project files:
 `settings.gradle.kts`, `build.gradle.kts`, `gradle.properties`,
 `app/build.gradle.kts`, `app/proguard-rules.pro`,
 `gradle/wrapper/gradle-wrapper.properties`, `.gitignore`).
@@ -96,9 +119,11 @@ AI-related:
 `androidx.core:core-ktx`, `androidx.appcompat:appcompat`,
 `com.google.android.material:material`,
 `androidx.constraintlayout:constraintlayout`,
-`androidx.activity:activity-ktx`.
-The crop UI, undo/redo history, and MediaProjection capture are all
-hand-written in this project — no third-party image-cropping library.
+`androidx.activity:activity-ktx`,
+`androidx.recyclerview:recyclerview` (for the history grid).
+The crop UI, undo/redo history, MediaProjection capture, and screenshot
+history are all hand-written in this project — no third-party
+image-cropping or image-loading (Glide/Coil) library.
 
 ## How to build/run
 
@@ -158,6 +183,14 @@ To actually build:
     Discard should delete the temp file and return to the previous screen.
 11. Tap "Disable floating bubble" in the app → the bubble and its
     notification should disappear.
+12. Tap **"Screenshot history"** on the main screen.
+    - Every screenshot saved so far should appear as a thumbnail grid,
+      newest first.
+    - Tap a thumbnail → it should open in the system image viewer.
+    - Long-press a thumbnail → "Delete screenshot?" dialog → confirm →
+      the item should disappear from both the grid and the device Gallery.
+    - Delete every screenshot → an empty-state message should replace the
+      grid.
 
 Also worth checking: capturing a screen with a lot of content (e.g. a long
 form or a PDF viewer) to confirm no visible lag/freeze, and taking several
