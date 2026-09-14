@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ss_editor_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/ss_toolbar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cancel_action"
+            android:padding="12dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="48dp"
+            android:text="@string/editor_title"
+            android:textColor="@color/ss_text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Image preview + crop overlay -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/previewImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/editor_title"
+            android:scaleType="matrix" />
+
+        <com.smartscreenshot.app.editor.CropOverlayView
+            android:id="@+id/cropOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <!-- Quick aspect ratio chips -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ss_toolbar_bg"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/ratioChipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            app:singleSelection="true" />
+
+    </HorizontalScrollView>
+
+    <!-- Row 1: Undo / Redo / Rotate left / Rotate right / Reset -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ss_toolbar_bg"
+        android:orientation="horizontal"
+        android:paddingVertical="6dp">
+
+        <ImageButton
+            android:id="@+id/undoButton"
+            style="@style/EditorToolButton"
+            android:contentDescription="@string/action_undo"
+            android:src="@drawable/ic_undo" />
+
+        <ImageButton
+            android:id="@+id/redoButton"
+            style="@style/EditorToolButton"
+            android:contentDescription="@string/action_redo"
+            android:src="@drawable/ic_redo" />
+
+        <ImageButton
+            android:id="@+id/rotateLeftButton"
+            style="@style/EditorToolButton"
+            android:contentDescription="@string/action_rotate_left"
+            android:src="@drawable/ic_rotate_left" />
+
+        <ImageButton
+            android:id="@+id/rotateRightButton"
+            style="@style/EditorToolButton"
+            android:contentDescription="@string/action_rotate_right"
+            android:src="@drawable/ic_rotate_right" />
+
+        <ImageButton
+            android:id="@+id/resetButton"
+            style="@style/EditorToolButton"
+            android:contentDescription="@string/action_reset"
+            android:src="@drawable/ic_reset" />
+
+    </LinearLayout>
+
+    <!-- Row 2: Crop / Save -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ss_toolbar_bg"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="6dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cropButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/action_crop"
+            app:icon="@drawable/ic_crop"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/action_save"
+            app:icon="@drawable/ic_save" />
+
+    </LinearLayout>
+
+    <!-- Row 3: Share -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/action_share"
+        app:icon="@drawable/ic_share"
+        style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+</LinearLayout>

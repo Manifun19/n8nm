@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Temp screenshot/crop working files -->
+    <cache-path name="smart_screenshot_cache" path="smart_screenshot/" />
+    <!-- Saved images kept in app-external Pictures for sharing right after save -->
+    <external-files-path name="smart_screenshot_pictures" path="Pictures/" />
+</paths>
