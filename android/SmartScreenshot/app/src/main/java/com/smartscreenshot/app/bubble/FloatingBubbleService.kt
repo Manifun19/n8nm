@@ -228,10 +228,14 @@ class FloatingBubbleService : Service() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // IMPORTANCE_LOW (not MIN): still silent/no heads-up, but a properly
+            // visible ongoing notification, which is what OEM battery managers
+            // (Samsung included) expect to see before treating this as a real
+            // foreground service instead of something safe to reap quickly.
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 getString(R.string.notification_channel_name),
-                NotificationManager.IMPORTANCE_MIN
+                NotificationManager.IMPORTANCE_LOW
             )
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(channel)
@@ -249,7 +253,7 @@ class FloatingBubbleService : Service() {
             .setContentText(getString(R.string.notification_text))
             .setContentIntent(openAppIntent)
             .setOngoing(true)
-            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
             .build()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
