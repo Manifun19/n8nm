@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+dist
+coverage
+*.tsbuildinfo
+.env
+.env.local
+.env*.local
+.DS_Store
+.vercel
+
+# The monorepo root ignores every package-lock.json (it is a pnpm workspace),
+# but this app is standalone npm and needs its lockfile committed.
+!package-lock.json
