@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Root has generous touch padding around a small visual bubble, so the
+     hit target stays comfortable while the on-screen bubble itself stays
+     compact (~26dp) per spec. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/bubbleIcon"
+        android:layout_width="@dimen/bubble_size"
+        android:layout_height="@dimen/bubble_size"
+        android:layout_gravity="center"
+        android:background="@drawable/bubble_background"
+        android:contentDescription="@string/app_name"
+        android:padding="5dp"
+        android:src="@drawable/ic_bubble_camera" />
+
+</FrameLayout>

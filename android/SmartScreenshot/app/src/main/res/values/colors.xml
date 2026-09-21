@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ss_primary">#1F6FEB</color>
+    <color name="ss_primary_dark">#1554B3</color>
+    <color name="ss_accent">#22C55E</color>
+    <color name="ss_bubble_bg">#E61F6FEB</color>
+    <color name="ss_bubble_icon">#FFFFFFFF</color>
+    <color name="ss_editor_bg">#0D1117</color>
+    <color name="ss_toolbar_bg">#161B22</color>
+    <color name="ss_crop_line">#FFFFFFFF</color>
+    <color name="ss_crop_handle">#1F6FEB</color>
+    <color name="ss_crop_scrim">#B3000000</color>
+    <color name="ss_text_primary">#FFFFFF</color>
+    <color name="ss_text_secondary">#9DA7B3</color>
+    <color name="ss_surface">#FFFFFF</color>
+    <color name="ss_disabled">#4D9DA7B3</color>
+</resources>

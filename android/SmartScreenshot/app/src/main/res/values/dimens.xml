@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bubble_size">26dp</dimen>
+    <dimen name="bubble_touch_padding">10dp</dimen>
+    <dimen name="crop_handle_touch_radius">24dp</dimen>
+    <dimen name="crop_min_size">56dp</dimen>
+    <dimen name="crop_handle_arm_length">18dp</dimen>
+    <dimen name="crop_handle_stroke_width">4dp</dimen>
+    <dimen name="crop_edge_tick_length">18dp</dimen>
+    <dimen name="toolbar_icon_size">28dp</dimen>
+    <dimen name="editor_edge_margin">16dp</dimen>
+</resources>
