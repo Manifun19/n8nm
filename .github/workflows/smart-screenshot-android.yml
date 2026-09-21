@@ -36,6 +36,13 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          # v3's default packages list ("tools platform-tools") still asks for
+          # the long-deprecated "tools" package, which Google has removed from
+          # the SDK repository — that now hard-fails the whole step. Override
+          # to just what this action needs to provide; the actual platform and
+          # build-tools versions are installed explicitly below.
+          packages: 'platform-tools'
 
       - name: Install required SDK packages
         run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
