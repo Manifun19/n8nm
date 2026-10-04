@@ -12,7 +12,9 @@
 			"**/dist",
 			"**/package.json",
 			"**/pnpm-lock.yaml",
-			"**/CHANGELOG.md"
+			"**/CHANGELOG.md",
+			// Standalone Next.js app with its own ESLint/Prettier conventions.
+			"apps/ai-formmate/**"
 		]
 	},
 	"formatter": {

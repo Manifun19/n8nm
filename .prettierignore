@@ -1,5 +1,7 @@
 coverage
 dist
+# Standalone Next.js app with its own tooling
+apps/ai-formmate
 package.json
 pnpm-lock.yaml
 packages/frontend/editor-ui/index.html
